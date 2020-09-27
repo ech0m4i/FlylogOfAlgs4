@@ -186,9 +186,9 @@ public class IndexMinPQstd<Key extends Comparable<Key>> implements Iterable<Inte
      * @deprecated Replaced by {@code changeKey(int, Key)}.
      */
     @Deprecated
-    public void change(int i, Key key) {
+    /*public void change(int i, Key key) {
         changeKey(i, key);
-    }
+    }*/
 
     /**
      * Decrease the key associated with index {@code i} to the specified value.
