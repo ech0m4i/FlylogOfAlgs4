@@ -55,11 +55,11 @@ public class mwipq<Item extends Comparable<Item>>{//without qp[] 1st try.
 				int x=s*2;
 				//if 2 sons find the smaller one.
 				//StdOut.println("sink() s: "+s+" x: "+x+"			^");//+" pqlen: "+pq.length);//+" less(x,x+1): ");
-				if(x+1<=n&&(less(x,x+1))) x++;//x+2==len --> //x+1<n
+				if(x+1<=n&&(less(x,x+1))) x++;//x+2==len(not with len but n) --> //x+1<n
 				//StdOut.println("sink() s:x      			|");
 				//StdOut.println(Arrays.toString(pq)+" 				-");//why last so wide?
-				if(!less(s,x)) break;//no need else. x>=s
-				exch(x,s); //x<o & x<s.
+				if(!less(s,x)) break;//no need else. s<=x(s is the smallest one) then break.
+				exch(x,s); //x<other sibling node & x<s.
 				s=x;
 			}
 			//StdOut.println("------------sink() over------------------");

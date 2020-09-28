@@ -1,10 +1,10 @@
 /******************************************************************************
  *  Compilation:  javac Heap.java
- *  Execution:    java Heap < input.txt
+ *  Execution:    java Heap < dt/input.txt
  *  Dependencies: StdOut.java StdIn.java
  *  Data files:   http://algs4.cs.princeton.edu/24pq/tiny.txt
  *                http://algs4.cs.princeton.edu/24pq/words3.txt
- *  
+ *
  *  Sorts a sequence of strings from standard input using heapsort.
  *
  *  % more tiny.txt
@@ -22,6 +22,7 @@
  ******************************************************************************/
 
 package algs4;
+import java.util.Arrays;
 
 /**
  *  The {@code Heap} class provides a static methods for heapsorting
@@ -36,7 +37,7 @@ package algs4;
 public class Heap {
 
     // This class should not be instantiated.
-    private Heap() { }
+    private Heap() { } //what's this?
 
     /**
      * Rearranges the array in ascending order, using the natural order.
@@ -44,8 +45,11 @@ public class Heap {
      */
     public static void sort(Comparable[] pq) {
         int n = pq.length;
-        for (int k = n/2; k >= 1; k--)
+        StdOut.println(n+" "+Arrays.toString(pq));
+        for (int k = n/2; k >= 1; k--) {
             sink(pq, k, n);
+            StdOut.println("foring "+Arrays.toString(pq));
+        }
         while (n > 1) {
             exch(pq, 1, n--);
             sink(pq, 1, n);
@@ -59,6 +63,7 @@ public class Heap {
     private static void sink(Comparable[] pq, int k, int n) {
         while (2*k <= n) {
             int j = 2*k;
+            //if(2k+1<=n)
             if (j < n && less(pq, j, j+1)) j++;
             if (!less(pq, k, j)) break;
             exch(pq, k, j);
@@ -73,7 +78,7 @@ public class Heap {
     private static boolean less(Comparable[] pq, int i, int j) {
         return pq[i-1].compareTo(pq[j-1]) < 0;
     }
-
+    //why object[]?
     private static void exch(Object[] pq, int i, int j) {
         Object swap = pq[i-1];
         pq[i-1] = pq[j-1];
@@ -84,7 +89,7 @@ public class Heap {
     private static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
     }
-        
+
 
    /***************************************************************************
     *  Check if array is sorted - useful for debugging.
@@ -104,14 +109,15 @@ public class Heap {
     }
 
     /**
-     * Reads in a sequence of strings from standard input; heapsorts them; 
-     * and prints them to standard output in ascending order. 
+     * Reads in a sequence of strings from standard input; heapsorts them;
+     * and prints them to standard output in ascending order.
      *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
         String[] a = StdIn.readAllStrings();
         Heap.sort(a);
+        StdOut.println(a.length+" "+Arrays.toString(a));
         show(a);
         assert isSorted(a);
     }
