@@ -3,7 +3,9 @@ package priority_queue;
 import algs4.*;
 import java.util.Arrays;
 public class HeapOpt {
+	private static cnt;
 	private static void sort(int[] a) {
+		cnt=0;
 		int n=a.length;
 		for(int i=n/2;i>=1;i--) sink(a,i,n);//1~n/2
 		//StdOut.println("ok?");
@@ -43,6 +45,7 @@ public class HeapOpt {
 	}
 	private static void exch(int[] a,int i,int j) {
 		int temp=a[i-1];a[i-1]=a[j-1];a[j-1]=temp;
+		++cnt;
 	}
 	private static boolean less(int[] a,int v,int w) {
 		return a[v-1]<a[w-1];
@@ -62,6 +65,7 @@ public class HeapOpt {
 		for(int i=0;i<alen;i++) a[i]=StdRandom.uniform(0,100);
 		//StdOut.println(Arrays.toString(a));
 		sort(a);
+		StdOut.println(Math.log(cnt)/Math.log(2));
 		//StdOut.println("result: "+Arrays.toString(a));
 		assert sorted(a);
 	}
