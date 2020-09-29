@@ -3,7 +3,7 @@ package priority_queue;
 import algs4.*;
 import java.util.Arrays;
 public class HeapOpt {
-	private static cnt;
+	private static int cnt;
 	private static void sort(int[] a) {
 		cnt=0;
 		int n=a.length;
