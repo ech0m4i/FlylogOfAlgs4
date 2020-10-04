@@ -18,8 +18,13 @@ public class quickthink {
 		int v=a[lo];
 		while(true) {
 			while(less(a[++i],v)) if(i==hi) break; //to avoid ++i=>hi+1 overflow.
-			while(less(v,a[--j])) if(j==lo) break; //to aoid --j=>lo-1 o.f.
+			//if last one <v;i==hi;j==hi+1 => break this while...stupid
+			//Rock help thinking(out stubborn)haha...
+			while(less(v,a[--j])) if(j==lo) break; //to avoid --j=>lo-1 o.f.
+			//if last one >v;--j*2;j=hi-1;then next if() break;
+			//damn it..
 			if(i>=j) break;
+			// ==v will exchange;index forward too.
 			exch(a,i,j);
 		}
 		exch(a,lo,j);

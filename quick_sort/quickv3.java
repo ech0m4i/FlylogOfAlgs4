@@ -1,5 +1,5 @@
 /*qucikv3.java*/
-package c21;
+package quick_sort;
 import algs4.*;
 
 public class quickv3 {
@@ -18,8 +18,8 @@ public class quickv3 {
 	private static int partition(int[] a,int lo,int hi) {
 		int i=lo,j=hi+1,v=a[lo];//w=a[hi<a.length-1?hi+1:hi];
 		while(true) {
-			while(a[++i]<v);
-			while(a[--j]>v);
+			while(a[++i]<v);//1st part() won't if outflow? no cause lastone at least = v;
+			while(a[--j]>v);//worst case j==hi-1;
 			if(i>=j) break;
 			exch(a,i,j);
 		}
@@ -38,9 +38,10 @@ public class quickv3 {
 	public static void main(String[] args) {
 		//Scanner in=new Scanner(System.in);
 		//int n=in.nextInt();
-		int n=StdIn.readInt();
-		int[] a=new int[1<2?n:n-1];
-		for(int i=0;i<n;i++) a[i]=(int)(StdRandom.uniform()*1000);
+		//int n=StdIn.readInt();
+		int[] a={9,8,7,6,5,4,3,2,1};
+		//new int[1<2?n:n-1];
+		//for(int i=0;i<n;i++) a[i]=(int)(StdRandom.uniform()*1000);
 		sort(a);
 		assert isSorted(a);
 	}

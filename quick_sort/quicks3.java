@@ -55,8 +55,8 @@ public class quicks3 {
 		int s=lo,t=hi;
 		while(lf<=rt) {
 			//需要分拣 <v,>v in [p+1,q-1]
-			//update: 其实这样并不互补
-			if(a[lf]<v) exch(a,lf++,s++);
+			//update: 其实这样好像并不互补?
+			if(a[lf]<v) exch(a,lf++,s++);//"无脑甩锅"
 			else exch(a,lf,rt);
 			if(lf>rt) break;//哭 终于跑通 多参数太难控制了呜呜
 			if(a[rt]>v) exch(a,rt--,t--);
