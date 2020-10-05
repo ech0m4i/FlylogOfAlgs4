@@ -78,11 +78,8 @@ public class MedianFinder {
                 exch(a,tid,tv);
                 tid=tv;
             }
-            while(tid/2>0) {
                 //StdOut.println(tid+" ");
                 swim(a,tid,true);
-                tid=tid/2;
-            }
         }
         else {
             tid=id;
@@ -92,10 +89,7 @@ public class MedianFinder {
                 exch(a,tid,tv);
                 tid=tv;
             }
-            while(tid/2>0) {
-                swim(a,tid,false);
-                tid=tid/2;
-            }
+                swim(a,tid,false); 
         }
     }
     private void ds(int len,boolean isbig) {
@@ -153,7 +147,8 @@ public class MedianFinder {
     }
     public static void main(String[] args) {
         //int k=StdIn.readInt();
-        int[] it={6,10,2,6,5,0,6,3,1,0,0};
+        int[] it={-1,-2,-3,-4,-5};
+        //{6,10,2,6,5,0,6,3,1,0,0};
     	MedianFinder mf=new MedianFinder();
     	for(int i=0;i<it.length;i++) {
 	    	mf.addNum(it[i]);                
