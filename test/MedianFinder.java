@@ -34,11 +34,10 @@ public class MedianFinder {
             pv=popm(hlf,--nlf,true);
             moveto(pv,false);
         }
-        else if(nrt-nlf>1) {
+        else {
             pv=popm(hrt,--nrt,false);
             moveto(pv,true);
         }
-        else return;
     }
     private void moveto(int pv,boolean isbig) {
         int rnoln=isbig?nlf:nrt;
@@ -53,13 +52,13 @@ public class MedianFinder {
     private void swim(int[] a,int id,boolean ifbig) {
         /*if(sigva==id&&sigvb==a) sig++;
         else {sigva=0;sigvb=new int[0];sig=-1;}
-        if(sig!=-1) return;*/
+        if(sig!=-1) return;*///can not got this...
         //StdOut.println("starting @swim"+(ifbig?" hlf":" hrt")+" "+id+" "+ifbig+" "+Arrays.toString(hlf)+" "+Arrays.toString(hrt));
         if(ifbig) {
-            while(id>0&&a[id]>a[id/2]) {exch(a,id,id/2);id=id/2;}   
+            while(id>0&&a[id]>a[(id+1)/2-1]) {exch(a,id,(id+1)/2-1);id=(id+1)/2-1;}   
         }
         else {
-            while(id>0&&a[id]<a[id/2]) {exch(a,id,id/2);id=id/2;}
+            while(id>0&&a[id]<a[(id+1)/2-1]) {exch(a,id,(id+1)/2-1);id=(id+1)/2-1;}
         }
     }
     private int popm(int[] a,int id,boolean ifbig) {
@@ -145,7 +144,7 @@ public class MedianFinder {
         int temp=a[v];a[v]=a[w];a[w]=temp;
         //StdOut.println(Arrays.toString(arr)+" @exch "+v+" "+w);
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         //int k=StdIn.readInt();
         int[] it={-1,-2,-3,-4,-5};
         //{6,10,2,6,5,0,6,3,1,0,0};
@@ -155,6 +154,46 @@ public class MedianFinder {
             //StdRandom.uniform(0,100));
 	    	StdOut.println(mf.findMedian());
     	}
+    }*/
+    private boolean detectheap() {
+        boolean heapok;
+        for(int i=0;(2*i+1)<nlf;++i) {
+                if(2*i+2<nlf) {
+                    if(hlf[2*i+2]>hlf[i]) {
+                        StdOut.println((2*i+2)+" @hlf");return heapok=false;
+                    }
+                }
+                if(hlf[2*i+1]>hlf[i]) {
+                    StdOut.println((2*i+1)+" @hlf");return  heapok=false;
+                }   
+        }
+        for(int i=0;(2*i+1)<nrt;++i) {
+                if(2*i+2<nrt) {
+                    if(hrt[2*i+2]<hrt[i]) {
+                        StdOut.println((2*i+2)+" @hrt");return heapok=false;
+                    }
+                }
+                if(hrt[2*i+1]<hrt[i]) {
+                    StdOut.println((2*i+1)+" @hrt");return heapok=false;
+                }   
+        }
+        return heapok=true;
+    }
+    public static void main(String[] args) {
+        //int k=StdIn.readInt();
+        int[] it={155,66,114,0,60,73,109,26,154,0,107,75,9,57,53,6,85,151,12,110,64,103,42,103,126,3,88,142,79,88,147,47,134,27,82,95,26,124,71,79,130,91,131,67,64,16,60,156,9,65,21,66,49,108,80,17,159,24,90,79,31,79,113,39,54,156,139,8,90,19,10,50,89,77,83,13,3,71,52,21,50,120,159,45,22,69,144,158,19,109,52,50,51,62,20,22,71,95,47,12,21,32,17,130,109,8,61,13,48,107,14,122,62,54,70,96,11,141,129,157,136,41,40,78,141,16,137,127,19,70,15,16,65,96,157,111,87,95,52,42,12,60,17,20,63,56,37,129,67,129,106,107,133,80,8,56,72,81,143,90,};
+        double[] ans={155.00000,110.50000,114.00000,90.00000,66.00000,69.50000,73.00000,69.50000,73.00000,69.50000,73.00000,74.00000,73.00000,69.50000,66.00000,63.00000,66.00000,69.50000,66.00000,69.50000,66.00000,69.50000,66.00000,69.50000,73.00000,69.50000,73.00000,74.00000,75.00000,77.00000,79.00000,77.00000,79.00000,77.00000,79.00000,80.50000,79.00000,80.50000,79.00000,79.00000,79.00000,80.50000,82.00000,80.50000,79.00000,79.00000,79.00000,79.00000,79.00000,77.00000,75.00000,74.00000,73.00000,74.00000,75.00000,74.00000,75.00000,74.00000,75.00000,77.00000,75.00000,77.00000,79.00000,77.00000,75.00000,77.00000,79.00000,77.00000,79.00000,77.00000,75.00000,74.00000,75.00000,76.00000,77.00000,76.00000,75.00000,74.00000,73.00000,72.00000,71.00000,72.00000,73.00000,72.00000,71.00000,71.00000,71.00000,72.00000,71.00000,72.00000,71.00000,71.00000,71.00000,70.00000,69.00000,68.00000,69.00000,70.00000,69.00000,68.00000,67.00000,66.50000,66.00000,66.50000,67.00000,66.50000,66.00000,66.00000,66.00000,66.00000,66.00000,66.00000,66.00000,65.50000,66.00000,66.00000,66.00000,66.00000,66.00000,66.50000,67.00000,66.50000,66.00000,66.50000,67.00000,66.50000,67.00000,68.00000,67.00000,68.00000,67.00000,66.50000,66.00000,66.50000,67.00000,68.00000,69.00000,69.50000,69.00000,68.00000,67.00000,66.50000,66.00000,66.00000,66.00000,65.50000,65.00000,65.50000,66.00000,66.00000,66.00000,66.50000,67.00000,67.00000,67.00000,66.50000,67.00000,67.00000,67.00000,68.00000,67.00000};
+        MedianFinder mf=new MedianFinder();
+        double[] op=new double[it.length];
+        for(int i=0;i<it.length;i++) {
+            mf.addNum(it[i]);
+            op[i]=mf.findMedian();
+            if(op[i]!=ans[i]) {
+                StdOut.println("i: "+i+" ans["+i+"] is "+ans[i]+" but val in op["+i+"] is "+op[i]+
+                    "\n"+Arrays.toString(mf.hlf)+"\n"+Arrays.toString(mf.hrt)); break;
+            }
+            if(!mf.detectheap()){ StdOut.println(mf.nlf+" "+Arrays.toString(mf.hlf)+"\n"+mf.nrt+" "+Arrays.toString(mf.hrt));break;}
+        }
     }
 }
 

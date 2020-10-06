@@ -99,13 +99,13 @@ public class Mdfd {
         int temp;
         //StdOut.println("@swim");
         if(isbig) {
-            while(((idx+1)/2-1>=0)&&arr[idx]>arr[(idx+1)/2-1]) {
+            while(idx>0&&arr[idx]>arr[(idx+1)/2-1]) {
                 temp=(idx+1)/2-1;
                // StdOut.println(idx+" "+temp+" "+Arrays.toString(arr));
                 exch(arr,idx,temp);idx=temp;}
             //StdOut.println(isbig+Arrays.toString(arr));
         } else {
-            while(((idx+1)/2-1)>=0&&arr[idx]<arr[(idx+1)/2-1]) {
+            while(idx>0&&arr[idx]<arr[(idx+1)/2-1]) {
                 temp=(idx+1)/2-1;
                 //StdOut.println(idx+" "+temp+" "+Arrays.toString(arr));
                 exch(arr,idx,temp);idx=temp;}
@@ -156,7 +156,6 @@ public class Mdfd {
         //{-1,-2,-3,-4,-5};
         //{6,10,2,6,5,0,6,3,1,0,0};
     	Mdfd mf=new Mdfd();
-    	int cnt=0;
         double[] op=new double[it.length];
     	for(int i=0;i<it.length;i++) {
 	    	mf.addNum(it[i]);               
